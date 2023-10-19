@@ -1,3 +1,5 @@
+"use client";
+
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import buy from "./../../../nextripe/public/buy.png";
@@ -5,6 +7,16 @@ import headerImage from "./../../../nextripe/public/headerImage.jpg";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const handlePayment = async () => {
+    try {
+      const data = await fetch("/api/payment");
+      const response = await data.json();
+      console.log("response", response);
+      window.location.assign(response.session);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <main className={` ${inter.className}`}>
       {/* --- Navigation bar --- */}
@@ -26,7 +38,10 @@ export default function Home() {
             Unlock your full potential of a future-proof career through the
             power of top digital skills with our all-in-one growth package.
           </p>
-          <button className="bg-purple-600 hover:bg-purple-800 w-[200px] text-white px-5 py-3 rounded-2xl text-lg font-semibold">
+          <button
+            onClick={handlePayment}
+            className="bg-purple-600 hover:bg-purple-800 w-[200px] text-white px-5 py-3 rounded-2xl text-lg font-semibold"
+          >
             Get Started
           </button>
         </div>
