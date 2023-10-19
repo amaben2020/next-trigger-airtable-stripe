@@ -22,19 +22,24 @@ client.defineJob({
   trigger: stripe.onCheckoutSessionCompleted(),
 
   run: async (payload, io, ctx) => {
+    // like its own req body
     const { customer_details } = payload;
     await io.logger.info("Getting event from Stripe!🎉");
     await io.logger.info(JSON.stringify(customer_details));
 
     await io.logger.info("Adding data to Airtable🎉");
 
+    console.log("Stripe Cus Details", customer_details);
+
     // --👇🏻 access the exact table via its ID --
     const table = io.airtable
       .base(process.env.AIRTABLE_BASE_ID!)
       .table(process.env.AIRTABLE_TABLE_ID!);
 
+    console.log("table", table);
+
     // -- 👇🏻 adds a new record to the table --
-    await table.createRecords("create records", [
+    await table.createRecords("payment records", [
       {
         fields: {
           Name: customer_details?.name!,

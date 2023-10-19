@@ -12,17 +12,18 @@
   },
   "dependencies": {
     "@trigger.dev/airtable": "^2.2.0",
+    "@trigger.dev/nextjs": "^2.2.0",
+    "@trigger.dev/react": "^2.2.0",
+    "@trigger.dev/sdk": "^2.2.0",
     "@trigger.dev/stripe": "^2.2.0",
+    "encoding": "^0.1.13",
     "inquirer": "^9.2.11",
     "next": "13.5.5",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
     "stripe": "^14.1.0",
-    "wrap-ansi": "^8.1.0",
-    "@trigger.dev/sdk": "^2.2.0",
-    "@trigger.dev/nextjs": "^2.2.0",
-    "@trigger.dev/react": "^2.2.0"
+    "wrap-ansi": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

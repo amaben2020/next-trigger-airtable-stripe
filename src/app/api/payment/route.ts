@@ -15,13 +15,14 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         },
       ],
       mode: "payment",
-      success_url: `http://localhost:3000/success`,
+      // add checkout_id if you still wanna use it in the success page i.e ?id={ID}
+      success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: "http://localhost:3000",
     });
-
-    NextResponse.json({ session: session.url }, { status: 200 });
+    // always return from serverless functions
+    return NextResponse.json({ session: session.url }, { status: 200 });
   } catch (error) {
     console.log("Error", error);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   }
 }
